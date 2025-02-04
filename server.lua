@@ -1,20 +1,16 @@
 QBCore = exports['qb-core']:GetCoreObject()
 
-local currentWeatherIndex = 1
-
 local ChangeInterval = WeatherShared.Configuration.ChangeTime * 60 * 1000
+local DebugChangeInterval = WeatherShared.Configuration.DebugChangeTime * 1000
 
 local function ChangeWeather()
-    currentWeatherIndex = currentWeatherIndex + 1
-    if currentWeatherIndex > #WeatherShared.Configuration.Types then
-        currentWeatherIndex = 1
-    end
-
-    local newWeather = WeatherShared.Configuration.Types[currentWeatherIndex]
+    local newWeather = WeatherShared.Configuration.Types[math.random(#WeatherShared.Configuration.Types)]
     TriggerEvent('qb-weathersync:server:setWeather', newWeather)
 
-    if WeatherShared.Configuration.Debug then
+    if WeatherShared.Configuration.Debug == true then
         print("Weather Changed To: " .. newWeather)
+    elseif WeatherShared.Configuration.Debug == false then
+        return
     end
 end
 
@@ -22,6 +18,10 @@ end
 Citizen.CreateThread(function()
     while true do
         ChangeWeather()
-        Citizen.Wait(ChangeInterval)
+        if WeatherShared.Configuration.Debug == true then
+            Citizen.Wait(DebugChangeInterval)
+        elseif WeatherShared.Configuration.Debug == false then
+            Citizen.Wait(ChangeInterval)
+        end
     end
 end)

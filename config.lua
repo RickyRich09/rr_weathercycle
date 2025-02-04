@@ -2,6 +2,7 @@ WeatherShared = WeatherShared or {}
 
 WeatherShared.Configuration = {
     Debug = true,
+    DebugChangeTime = 10, -- seconds
     Types = {
         "CLEAR",
         "EXTRASUNNY",
