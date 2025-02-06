@@ -4,7 +4,7 @@ local ChangeInterval = WeatherShared.Configuration.ChangeTime * 60 * 1000
 local DebugChangeInterval = WeatherShared.Configuration.DebugChangeTime * 1000
 
 local function ChangeWeather()
-    local currentWeather = exports['qb-weathersync']:GetWeather() -- GET CURRENT WEATHER
+    local currentWeather = exports["qb-weathersync"]:getWeatherState() -- GET CURRENT WEATHER
     local weatherTypes = WeatherShared.Configuration.Types
     local newWeather
 
