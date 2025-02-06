@@ -1,7 +1,7 @@
 WeatherShared = WeatherShared or {}
 
 WeatherShared.Configuration = {
-    Debug = true,
+    Debug = false,
     DebugChangeTime = 10, -- seconds
     Types = {
         "CLEAR",
@@ -17,5 +17,5 @@ WeatherShared.Configuration = {
         "SNOWLIGHT",
         "BLIZZARD"
     },
-    ChangeTime = 1, -- minutes
+    ChangeTime = 15, -- minutes
 }
